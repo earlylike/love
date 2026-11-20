@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arti</title>
+<style>
+:root{--bg1:#2a0a2e;--bg2:#5a1747;--bg3:#a3294f;--ink:#fff3f6;--glow:#ff7aa8;--gold:#ffd9a0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;height:100%;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;
+background:radial-gradient(ellipse at 50% 30%,var(--bg3) 0%,var(--bg2) 45%,var(--bg1) 100%);
+font-family:"Great Vibes","Snell Roundhand","Brush Script MT",cursive;color:var(--ink)}
+.stage{position:relative;text-align:center;z-index:2;padding:0 16px}
+h1{margin:0;font-weight:400;font-size:clamp(3.4rem,15vw,8.5rem);line-height:1;letter-spacing:.02em;
+color:#fff;filter:drop-shadow(0 0 18px rgba(255,122,168,.65))}
+h1 span{display:inline-block;color:#fff;background:linear-gradient(180deg,#fff 20%,var(--gold) 60%,#ff9ec0 100%);
+-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:bob 3.2s ease-in-out infinite}
+h1 span:nth-child(2){animation-delay:.2s}h1 span:nth-child(3){animation-delay:.4s}h1 span:nth-child(4){animation-delay:.6s}
+@keyframes shine{to{background-position:200% center}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+h1{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 .22em}
+h1 .w{font-weight:400;white-space:nowrap}
+h1 .hrt{background:none;-webkit-text-fill-color:#ff4f87;color:#ff4f87;font-size:.62em;text-shadow:0 0 16px #ff4f87;animation:beat 1.4s ease-in-out infinite}
+.sub{font-size:clamp(1.4rem,5vw,2rem);color:var(--gold);margin-top:.2em;opacity:.9}
+.heart-big{display:inline-block;color:#ff5c8a;animation:beat 1.4s ease-in-out infinite;text-shadow:0 0 14px #ff5c8a}
+@keyframes beat{0%,100%{transform:scale(1)}20%{transform:scale(1.25)}40%{transform:scale(1)}60%{transform:scale(1.18)}}
+.layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.heart{position:absolute;bottom:-30px;color:#ff8fb3;opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) translateX(0) scale(.6);opacity:0}15%{opacity:.8}
+100%{transform:translateY(-110vh) translateX(var(--dx)) scale(1.1);opacity:0}}
+.bf{position:absolute;left:0;top:0;width:34px;height:30px;will-change:transform}
+.bf svg{width:100%;height:100%;overflow:visible}
+.wing{transform-origin:50% 50%;animation:flap .28s ease-in-out infinite alternate}
+.wl{transform-origin:17px 15px}.wr{transform-origin:17px 15px;animation-name:flapr}
+@keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.25)}}
+@keyframes flapr{from{transform:scaleX(1)}to{transform:scaleX(.25)}}
+.balloons{position:fixed;left:0;right:0;bottom:0;height:0;z-index:1;pointer-events:none}
+.balloon{position:absolute;bottom:-4px;width:76px;height:228px;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite}
+.balloon svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.rope{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:3;pointer-events:none;line-height:0}
+.bulb{animation:twinkle 1.8s ease-in-out infinite}
+.cats{position:fixed;left:0;right:0;bottom:calc(4px + env(safe-area-inset-bottom,0px));height:0;z-index:2;pointer-events:none}
+.cat{position:absolute;bottom:0;width:clamp(52px,14vw,84px);transform:translateX(-50%)}
+.cat svg{width:100%;height:auto;overflow:visible;display:block;animation:hop 2.4s ease-in-out infinite;filter:drop-shadow(0 3px 5px rgba(0,0,0,.25))}
+@keyframes hop{0%,70%,100%{transform:translateY(0)}80%{transform:translateY(-8px)}90%{transform:translateY(0)}}
+.tail{transform-box:fill-box;transform-origin:0% 100%;animation:wag 1.2s ease-in-out infinite alternate}
+@keyframes wag{from{transform:rotate(-12deg)}to{transform:rotate(14deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 4s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.ch{opacity:0;animation:cheart 2.4s ease-out infinite}
+@keyframes cheart{0%,60%{opacity:0;transform:translateY(0)}75%{opacity:1}100%{opacity:0;transform:translateY(-18px)}}
+@media (prefers-reduced-motion:reduce){.cat svg,.tail,.eye,.ch{animation:none}}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+.gift{position:relative;display:block;width:88px;height:80px;margin:clamp(44px,13vh,96px) auto 0;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;font:inherit;animation:wiggle 3.2s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(255,122,168,.7))}
+.gift.open{animation:none}
+.gtxt{text-align:center;font-size:clamp(1.6rem,6.5vw,2.2rem);line-height:1.1;margin-top:8px;color:var(--gold);text-shadow:0 0 12px rgba(255,122,168,.8);animation:glowtxt 2s ease-in-out infinite}
+@keyframes glowtxt{0%,100%{opacity:.75}50%{opacity:1}}
+.gift:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:8px}
+@keyframes wiggle{0%,78%,100%{transform:rotate(0)}83%{transform:rotate(-6deg)}88%{transform:rotate(6deg)}93%{transform:rotate(-3deg)}}
+.gbody{position:absolute;left:11px;bottom:0;width:66px;height:50px;border-radius:4px 4px 8px 8px;background:linear-gradient(180deg,#ff5c8a,#d63a6c);z-index:2}
+.gbody::after,.glid::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:12px;margin-left:-6px;background:#ffe3b0}
+.glid{position:absolute;left:5px;bottom:46px;width:78px;height:22px;border-radius:5px;background:linear-gradient(180deg,#ff8fb3,#ff5c8a);z-index:3;transform-origin:0% 100%;transition:transform .6s cubic-bezier(.3,1.2,.5,1),opacity .5s}
+.glid i{position:absolute;top:-9px;left:50%;width:22px;height:12px;margin-left:-11px;z-index:1}
+.glid i::before,.glid i::after{content:"";position:absolute;top:0;width:11px;height:12px;background:#ffd9a0;border-radius:50% 50% 50% 0}
+.glid i::before{left:-1px;transform:rotate(-25deg)}
+.glid i::after{right:-1px;transform:scaleX(-1) rotate(-25deg);background:#ffd9a0}
+.gift.open .glid{transform:translate(-62px,34px) rotate(-38deg);opacity:0;z-index:0}
+.scene{position:absolute;left:50%;bottom:44px;width:110px;z-index:1;transform:translateX(-50%) translateY(26px) scale(.2);transform-origin:50% 100%;opacity:0;transition:transform .3s,opacity .2s;pointer-events:none}
+.gift.open .scene{opacity:1;transform:translateX(-50%) translateY(0) scale(1);transition:transform .8s cubic-bezier(.3,1.5,.5,1) .35s,opacity .2s .35s}
+.scene svg{display:block;width:100%;height:auto;overflow:visible}
+.gh{transform-box:fill-box;transform-origin:50% 100%}
+.gift.open .gg{animation:leanG .9s ease-in-out 1.3s forwards}
+.gift.open .gb{animation:leanB .9s ease-in-out 1.3s forwards}
+@keyframes leanG{to{transform:translateX(11px) rotate(10deg)}}
+@keyframes leanB{to{transform:translateX(-11px) rotate(-10deg)}}
+.ec{opacity:0}
+.gift.open .eo{animation:hideit .01s 1.9s forwards}
+.gift.open .ec{animation:showit .01s 1.9s forwards}
+@keyframes hideit{to{opacity:0}}
+@keyframes showit{to{opacity:1}}
+.kheart{opacity:0;transform-box:fill-box;transform-origin:center}
+.gift.open .kheart{animation:kpop 1.5s ease-out 2s infinite}
+@keyframes kpop{0%{opacity:0;transform:scale(.3)}30%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:translateY(-14px) scale(1)}}
+@media (prefers-reduced-motion:reduce){.gift,.gift.open .gg,.gift.open .gb,.gift.open .kheart{animation:none}.gift.open .ec{opacity:1}.gift.open .eo{opacity:0}.gift.open .kheart{opacity:1}}
+@media (prefers-reduced-motion:reduce){.balloon,.bulb{animation:none}}
+@media (prefers-color-scheme:dark){:root{--ink:#fff3f6}}
+@media (prefers-reduced-motion:reduce){h1,h1 span,.heart-big,.heart,.wing{animation:none}.heart{opacity:.5}}
+</style>
+</head>
+<body>
+<div class="layer" id="hearts"></div>
+<div class="balloons" id="balloons"></div>
+<div class="rope" id="rope"></div>
+<div class="cats" id="cats"></div>
+<div class="stage">
+  <h1 aria-label="Arti loves Kiran"><b class="w"><span>A</span><span>r</span><span>t</span><span>i</span></b><span class="hrt">&#10084;</span><b class="w"><span>K</span><span>i</span><span>r</span><span>a</span><span>n</span></b></h1>
+  <button class="gift" id="gift" type="button" aria-label="Tap to open the gift" aria-expanded="false">
+    <div class="scene"><svg viewBox="0 0 120 100" aria-hidden="true">
+      <path d="M28 62h14l8 26H20z" fill="#ff7aa8"/><rect x="26" y="88" width="5" height="6" fill="#ffd9bf"/><rect x="39" y="88" width="5" height="6" fill="#ffd9bf"/><ellipse cx="27" cy="95" rx="6" ry="3" fill="#7a3a2a"/><ellipse cx="43" cy="95" rx="6" ry="3" fill="#7a3a2a"/>
+      <path d="M29 64q-8 6-4 14M41 64q8 6 4 14" stroke="#ffd9bf" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <g class="gh gg"><circle cx="35" cy="42" r="19" fill="#5a2d1c"/><circle cx="14" cy="52" r="7" fill="#5a2d1c"/><circle cx="56" cy="52" r="7" fill="#5a2d1c"/><circle cx="18" cy="46" r="2.5" fill="#ff4f87"/><circle cx="52" cy="46" r="2.5" fill="#ff4f87"/><circle cx="35" cy="44" r="15" fill="#ffd9bf"/><path d="M20 40Q35 22 50 40Q42 32 35 34Q27 32 20 40Z" fill="#5a2d1c"/><path d="M35 27l-7-4v8zM35 27l7-4v8z" fill="#ff4f87"/>
+        <g class="eo"><circle cx="30" cy="45" r="2" fill="#3b1030"/><circle cx="40" cy="45" r="2" fill="#3b1030"/></g><path class="ec" d="M27.5 45q2.5 2.5 5 0M37.5 45q2.5 2.5 5 0" stroke="#3b1030" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <circle cx="25" cy="50" r="3" fill="#ff9ec0" opacity=".6"/><circle cx="45" cy="50" r="3" fill="#ff9ec0" opacity=".6"/><path d="M32 51q3 3 6 0" stroke="#c0405f" stroke-width="1.3" fill="none" stroke-linecap="round"/></g>
+      <path d="M77 62h16l5 20H72z" fill="#5fb0ff"/><path d="M72 82h26l-1 9H73z" fill="#3a4a8a"/><rect x="76" y="91" width="5" height="4" fill="#ffd9bf"/><rect x="89" y="91" width="5" height="4" fill="#ffd9bf"/><ellipse cx="78" cy="96" rx="6" ry="3" fill="#2b2233"/><ellipse cx="92" cy="96" rx="6" ry="3" fill="#2b2233"/>
+      <path d="M78 64q-8 6-4 14M92 64q8 6 4 14" stroke="#ffd9bf" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <g class="gh gb"><circle cx="85" cy="44" r="15" fill="#ffd9bf"/><path d="M70 42Q70 26 85 26Q100 26 100 42Q94 33 85 35Q76 33 70 42Z" fill="#2b2233"/>
+        <g class="eo"><circle cx="80" cy="45" r="2" fill="#3b1030"/><circle cx="90" cy="45" r="2" fill="#3b1030"/></g><path class="ec" d="M77.5 45q2.5 2.5 5 0M87.5 45q2.5 2.5 5 0" stroke="#3b1030" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <circle cx="75" cy="50" r="3" fill="#ff9ec0" opacity=".6"/><circle cx="95" cy="50" r="3" fill="#ff9ec0" opacity=".6"/><path d="M82 51q3 3 6 0" stroke="#c0405f" stroke-width="1.3" fill="none" stroke-linecap="round"/></g>
+      <g transform="translate(0,-26)"><path class="kheart" d="M60 36c-8-6-12 2-6 6l6 5 6-5c6-4 2-12-6-6z" fill="#ff4f87"/></g>
+    </svg></div>
+    <div class="gbody"></div>
+    <div class="glid"><i></i></div>
+  </button>
+  <div class="gtxt">Open the Box</div>
+  
+</div>
+<div class="layer" id="flies"></div>
+<script>
+(function(){
+  var hearts=document.getElementById('hearts'),flies=document.getElementById('flies');
+  for(var i=0;i<18;i++){
+    var h=document.createElement('div');h.className='heart';h.textContent='\u2665';
+    h.style.left=Math.random()*100+'%';
+    h.style.fontSize=(10+Math.random()*16)+'px';
+    h.style.animationDuration=(7+Math.random()*7)+'s';
+    h.style.animationDelay=(-Math.random()*12)+'s';
+    h.style.setProperty('--dx',(Math.random()*80-40)+'px');
+    hearts.appendChild(h);
+  }
+  var bal=document.getElementById('balloons');
+  var bc=['#ff4f87','#ff8fb3','#ffb347','#b57bff','#ff4f87','#ff7aa8'];
+  [1,12,26,62,76,88].forEach(function(l,i){
+    var c=bc[i],heart=i%2===0,d=document.createElement('div');d.className='balloon';
+    d.style.left=l+'%';d.style.animationDelay=(-i*.7)+'s';d.style.animationDuration=(3.6+i*.4)+'s';
+    var shape=heart?'<path d="M40 72C10 48 4 28 14 14 24 2 38 8 40 22 42 8 56 2 66 14 76 28 70 48 40 72Z" fill="'+c+'"/><path d="M20 20C24 14 30 14 33 18" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none" opacity=".55"/>':'<ellipse cx="40" cy="38" rx="28" ry="34" fill="'+c+'"/><ellipse cx="28" cy="24" rx="6" ry="10" fill="#fff" opacity=".4" transform="rotate(25 28 24)"/>';
+    d.innerHTML='<svg viewBox="0 0 80 240"><path d="M40 80C32 110 48 140 40 170S34 215 40 240" stroke="#ffe3ee" stroke-width="1.6" fill="none" opacity=".85"/><path d="M36 80L40 72L44 80Z" fill="'+c+'"/>'+shape+'</svg>';
+    bal.appendChild(d);
+  });
+  var rope=document.getElementById('rope');
+  function lights(){
+    var W=innerWidth,n=Math.max(3,Math.round(W/130)),sw=W/n,cl=['#ff6fa5','#ffd9a0','#ffffff','#ff9ec0','#c9a0ff'],k=0;
+    var s='<svg width="'+W+'" height="64" viewBox="0 0 '+W+' 64">';
+    for(var i=0;i<n;i++){
+      var x0=i*sw,x1=x0+sw,cx=x0+sw/2;
+      s+='<path d="M'+x0+' 5Q'+cx+' 57 '+x1+' 5" stroke="#ffd9e6" stroke-width="1.5" fill="none" opacity=".8"/>';
+      [.2,.5,.8].forEach(function(t){
+        var u=1-t,x=u*u*x0+2*u*t*cx+t*t*x1,y=u*u*5+2*u*t*57+t*t*5,col=cl[k%cl.length];
+        s+='<g class="bulb" style="animation-delay:'+(-(k%5)*.4)+'s"><rect x="'+(x-2)+'" y="'+(y-1)+'" width="4" height="5" fill="#8a3a5c"/><circle cx="'+x+'" cy="'+(y+8)+'" r="5" fill="'+col+'" style="filter:drop-shadow(0 0 5px '+col+')"/></g>';
+        k++;
+      });
+    }
+    rope.innerHTML=s+'</svg>';
+  }
+  lights();addEventListener('resize',lights);
+  var gift=document.getElementById('gift');
+  gift.addEventListener('click',function(){
+    var o=gift.classList.toggle('open');
+    gift.setAttribute('aria-expanded',o?'true':'false');
+    gift.setAttribute('aria-label',o?'Tap to close the gift':'Tap to open the gift');
+  });
+  var cats=document.getElementById('cats');
+  [{l:20,c:'#fff1e0',s:'#f3c9a8',st:0},{l:40,c:'#ffc79a',s:'#e89a62',st:1},{l:58,c:'#e3ddf5',s:'#b9aee0',st:0},{l:76,c:'#ffe0ec',s:'#f5aac6',st:0}].forEach(function(o,i){
+    var c=o.c,hf='',bf='';
+    for(var a=0;a<360;a+=36){var r=a*Math.PI/180;hf+='<circle cx="'+(50+25*Math.cos(r)).toFixed(1)+'" cy="'+(40+23*Math.sin(r)).toFixed(1)+'" r="8" fill="'+c+'"/>';}
+    [22,36,50,64,78].forEach(function(x){bf+='<circle cx="'+x+'" cy="'+(x%2?80:78)+'" r="9" fill="'+c+'"/>';});
+    var st=o.st?'<path d="M44 20v8M50 18v9M56 20v8" stroke="'+o.s+'" stroke-width="3" stroke-linecap="round"/>':'';
+    var d=document.createElement('div');d.className='cat';d.style.left=o.l+'%';
+    d.innerHTML='<svg viewBox="0 0 100 96" style="animation-delay:'+(-i*.6)+'s"><g class="tail" style="animation-delay:'+(-i*.3)+'s"><path d="M78 80C98 78 100 56 90 50" stroke="'+c+'" stroke-width="9" stroke-linecap="round" fill="none"/></g><ellipse cx="50" cy="72" rx="32" ry="20" fill="'+c+'"/>'+bf+'<ellipse cx="38" cy="90" rx="8" ry="5" fill="'+c+'"/><ellipse cx="62" cy="90" rx="8" ry="5" fill="'+c+'"/><path d="M26 30L24 6L44 20Z" fill="'+c+'"/><path d="M74 30L76 6L56 20Z" fill="'+c+'"/><path d="M29 26L28 13L38 21Z" fill="#ffb3c6"/><path d="M71 26L72 13L62 21Z" fill="#ffb3c6"/>'+hf+'<circle cx="50" cy="40" r="26" fill="'+c+'"/>'+st+'<ellipse class="eye" cx="39" cy="40" rx="3.6" ry="4.6" fill="#3b1030"/><ellipse class="eye" cx="61" cy="40" rx="3.6" ry="4.6" fill="#3b1030"/><circle cx="40.3" cy="38.4" r="1.3" fill="#fff"/><circle cx="62.3" cy="38.4" r="1.3" fill="#fff"/><circle cx="30" cy="50" r="4.5" fill="#ff9ec0" opacity=".55"/><circle cx="70" cy="50" r="4.5" fill="#ff9ec0" opacity=".55"/><path d="M47.5 47h5l-2.5 3z" fill="#ff7aa8"/><path d="M44 53q3 3 6 0q3 3 6 0" stroke="#3b1030" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M26 47L14 44M26 51L14 53M74 47L86 44M74 51L86 53" stroke="#a88" stroke-width="1" opacity=".6"/><text class="ch" x="50" y="2" text-anchor="middle" font-size="13" fill="#ff5c8a" style="animation-delay:'+(-i*.6)+'s">&#10084;</text></svg>';
+    cats.appendChild(d);
+  });
+  var colors=[['#ff6fa5','#ffb3d0'],['#ffb347','#ffe0a3'],['#b57bff','#e0c7ff'],['#5fd0ff','#bff0ff']];
+  var list=[];
+  function mk(c){
+    var d=document.createElement('div');d.className='bf';
+    d.innerHTML='<svg viewBox="0 0 34 30"><g class="wing wl"><path d="M17 15C8 0 0 2 2 12c1 7 9 8 15 3z" fill="'+c[0]+'"/><path d="M17 15C9 20 5 28 11 28c5 0 8-6 6-13z" fill="'+c[1]+'"/></g><g class="wing wr"><path d="M17 15C26 0 34 2 32 12c-1 7-9 8-15 3z" fill="'+c[0]+'"/><path d="M17 15C25 20 29 28 23 28c-5 0-8-6-6-13z" fill="'+c[1]+'"/></g><ellipse cx="17" cy="15" rx="1.4" ry="8" fill="#3b1030"/></svg>';
+    flies.appendChild(d);
+    var s=.7+Math.random()*.7;
+    return {el:d,x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+      a:Math.random()*6.28,sp:.6+Math.random()*.8,t:Math.random()*100,s:s};
+  }
+  for(var i=0;i<6;i++)list.push(mk(colors[i%colors.length]));
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tick(){
+    var W=innerWidth,H=innerHeight;
+    list.forEach(function(b){
+      b.t+=.03;
+      b.a+=Math.sin(b.t*1.3)*.07;
+      b.x+=Math.cos(b.a)*b.sp;
+      b.y+=Math.sin(b.a)*b.sp+Math.sin(b.t*3)*.4;
+      if(b.x<-40)b.x=W+30;if(b.x>W+40)b.x=-30;
+      if(b.y<-40)b.y=H+30;if(b.y>H+40)b.y=-30;
+      b.el.style.transform='translate('+b.x+'px,'+b.y+'px) rotate('+(Math.cos(b.a)*20)+'deg) scale('+b.s+')';
+    });
+    requestAnimationFrame(tick);
+  }
+  if(!reduce)tick();
+  addEventListener('pointerdown',function(e){
+    for(var i=0;i<6;i++){
+      var p=document.createElement('div');p.className='heart';p.textContent='\u2665';
+      p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';p.style.bottom='auto';
+      p.style.fontSize=(12+Math.random()*14)+'px';
+      p.style.animationDuration=(2+Math.random()*2)+'s';
+      p.style.setProperty('--dx',(Math.random()*120-60)+'px');
+      hearts.appendChild(p);
+      (function(n){setTimeout(function(){n.remove()},4200)})(p);
+    }
+  });
+})();
+</script>
+</body>
+</html>
